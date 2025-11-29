@@ -6,14 +6,15 @@ import org.example.model.PerishableProduct;
 import org.example.model.Product;
 import org.example.model.Wine;
 import org.example.repository.InMemoryProductRepository;
+import org.example.utils.ProductUpdateHelper;
 
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 public class ProductService {
 
     private final InMemoryProductRepository repository;
+    private final ProductUpdateHelper helper =  new ProductUpdateHelper();
 
     public ProductService(InMemoryProductRepository repository) {
         this.repository = repository;
@@ -47,7 +48,7 @@ public class ProductService {
     // Update Products that Do Expire
     public void updatePerishableProduct(PerishableProduct product, LocalDate currentDate) {
         if (product instanceof Cheese c) {
-            updateCheese(c, currentDate);
+            helper.updateCheese(c, currentDate);
         } else {
             updateGenericPerishableProduct(product, currentDate);
         }
@@ -58,31 +59,15 @@ public class ProductService {
         product.setMustBeRemoved(!product.getExpiryDate().isAfter(currentDate));
     }
 
-    public void updateCheese(Cheese cheese, LocalDate currentDate) {
-        cheese.setQuality(cheese.getQuality() - 1);
-
-        boolean isLowQuality = cheese.getQuality() < 30;
-        boolean isExpired = !cheese.getExpiryDate().isAfter(currentDate);
-        cheese.setMustBeRemoved(isLowQuality || isExpired);
-    }
-
-    // Update Products that do not Expire
     public void updateNonPerishableProduct(NonPerishableProduct product, LocalDate currentDate) {
         if (product instanceof Wine wine) {
-            updateWine(wine, currentDate);
+            helper.updateWine(wine, currentDate);
         } else {
-            updateGenericNonPerishable(product);
+            updateGenericNonPerishableProduct(product);
         }
     }
 
-    public void updateGenericNonPerishable(Product product) {
+    public void updateGenericNonPerishableProduct(Product product) {
         product.setMustBeRemoved(false);
-    }
-
-    public void updateWine(Wine wine, LocalDate currentDate) {
-        long days = ChronoUnit.DAYS.between(wine.getStockDate(), currentDate);
-        if (days > 0 && days % 10 == 0 && wine.getQuality() < 50) {
-            wine.setQuality(wine.getQuality() + 1);
-        }
     }
 }
