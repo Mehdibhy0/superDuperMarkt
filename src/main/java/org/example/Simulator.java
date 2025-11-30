@@ -1,6 +1,7 @@
 package org.example;
 
 import org.example.model.Cheese;
+import org.example.model.Joghurt;
 import org.example.model.Product;
 import org.example.model.Wine;
 import org.example.repository.InMemoryProductRepository;
@@ -20,9 +21,8 @@ public class Simulator {
         for (int day = 0; day <= days; day++) {
             LocalDate currentDate = startDate.plusDays(day);
             System.out.println("Day: " + (day + 1) + " Current date: " + currentDate);
-            System.out.println("____________________________________");
-
             productService.updateAllProducts(currentDate);
+
 
             for (Product p : productService.getProducts()) {
                 System.out.printf("%s | Quality: %d | Base Price: %.2f | CurrentPrice: %.2f | Remove: %s%n",
@@ -32,6 +32,9 @@ public class Simulator {
                         p.getCurrentPrice(),
                         p.isMustBeRemoved() ? "Yes" : "No");
             }
+            System.out.println("____________________________________");
+
+
             System.out.println("");
 
         }
@@ -42,6 +45,8 @@ public class Simulator {
         repository.addProduct(new Cheese("Gouda", 50, 10.0, LocalDate.now().plusDays(60)));
         repository.addProduct(new Cheese("Brie", 40, 12.0, LocalDate.now().plusDays(50)));
         repository.addProduct(new Cheese("Ricotta", 40, 15.0, LocalDate.now().plusDays(5)));
+        //Expires on 8th day, price is cut in half on 5th day
+        repository.addProduct(new Joghurt("Joghurt", 7, 15.0, LocalDate.now().plusDays(7)));
 
         // Non-Perishable Products: Wine
         repository.addProduct(new Wine("Merlot", 20, 30.0, LocalDate.now().minusDays(5)));

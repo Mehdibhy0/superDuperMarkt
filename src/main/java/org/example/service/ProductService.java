@@ -1,6 +1,7 @@
 package org.example.service;
 
 import org.example.model.Cheese;
+import org.example.model.Joghurt;
 import org.example.model.NonPerishableProduct;
 import org.example.model.PerishableProduct;
 import org.example.model.Product;
@@ -14,7 +15,7 @@ import java.util.List;
 public class ProductService {
 
     private final InMemoryProductRepository repository;
-    private final ProductUpdateHelper helper =  new ProductUpdateHelper();
+    private final ProductUpdateHelper helper = new ProductUpdateHelper();
 
     public ProductService(InMemoryProductRepository repository) {
         this.repository = repository;
@@ -34,21 +35,26 @@ public class ProductService {
 
             product.setCurrentPrice(calculateCurrentPrice(product));
         }
-
     }
 
     public double calculateCurrentPrice(Product product) {
         //Wine does not change price
-        if(product instanceof Wine){
+        if (product instanceof Wine) {
             return product.getBasePrice();
+        } else if (product instanceof Joghurt joghurt) {
+            if (joghurt.getQuality() <= 2) {
+                return (joghurt.getBasePrice() / 2);
+            }
         }
-        return  product.getBasePrice()+ (product.getQuality() * 0.10);
+        return product.getBasePrice() + (product.getQuality() * 0.10);
     }
 
     // Update Products that Do Expire
     public void updatePerishableProduct(PerishableProduct product, LocalDate currentDate) {
         if (product instanceof Cheese c) {
             helper.updateCheese(c, currentDate);
+        } else if (product instanceof Joghurt j) {
+            helper.updateJoghurt(j, currentDate);
         } else {
             updateGenericPerishableProduct(product, currentDate);
         }
@@ -62,9 +68,8 @@ public class ProductService {
     public void updateNonPerishableProduct(NonPerishableProduct product, LocalDate currentDate) {
         if (product instanceof Wine wine) {
             helper.updateWine(wine, currentDate);
-        } else {
-            updateGenericNonPerishableProduct(product);
         }
+        updateGenericNonPerishableProduct(product);
     }
 
     public void updateGenericNonPerishableProduct(Product product) {

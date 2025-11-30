@@ -1,6 +1,7 @@
 package org.example.utils;
 
 import org.example.model.Cheese;
+import org.example.model.Joghurt;
 import org.example.model.Wine;
 
 import java.time.LocalDate;
@@ -20,5 +21,14 @@ public class ProductUpdateHelper {
         if (days > 0 && days % 10 == 0 && wine.getQuality() < 50) {
             wine.setQuality(wine.getQuality() + 1);
         }
+    }
+
+    //Joghurt has quality of 7 , expires after 7 days, and becomes half price after 5th day
+    public void updateJoghurt(Joghurt joghurt, LocalDate currentDate) {
+        boolean isExpired = !joghurt.getExpiryDate().isAfter(currentDate);
+        if (joghurt.getQuality() > 0) {
+            joghurt.setQuality(joghurt.getQuality() - 1);
+        }
+        if (isExpired) {joghurt.setMustBeRemoved(true);}
     }
 }
