@@ -12,7 +12,7 @@ public abstract class PerishableProduct extends Product{
     protected final LocalDate expiryDate;
 
     public PerishableProduct(String name, int quality, double basePrice,  LocalDate expiryDate) {
-        super(name, quality, basePrice, 0.0, false);
+        super(name, quality, basePrice, false);
         this.expiryDate = expiryDate;
     }
 }

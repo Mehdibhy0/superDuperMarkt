@@ -4,6 +4,7 @@ import org.example.model.Cheese;
 import org.example.model.Joghurt;
 import org.example.model.Wine;
 import org.example.repository.InMemoryProductRepository;
+import org.example.sqlmodule.SqlProductRepository;
 import org.example.utils.CsvProductLoader;
 
 import java.time.LocalDate;
@@ -31,5 +32,10 @@ public class ProductServiceFactory {
         loader.load(pathToCsv,productRepository);
 
         return new ProductService(productRepository);
+    }
+
+    public static ProductService createSqlService(String url, String name, String password){
+        SqlProductRepository repository = new SqlProductRepository(url,name,password);
+        return new ProductService(repository);
     }
 }

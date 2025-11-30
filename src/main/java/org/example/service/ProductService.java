@@ -6,7 +6,7 @@ import org.example.model.NonPerishableProduct;
 import org.example.model.PerishableProduct;
 import org.example.model.Product;
 import org.example.model.Wine;
-import org.example.repository.InMemoryProductRepository;
+import org.example.repository.ProductRepository;
 import org.example.utils.ProductUpdateHelper;
 
 import java.time.LocalDate;
@@ -14,10 +14,10 @@ import java.util.List;
 
 public class ProductService {
 
-    private final InMemoryProductRepository repository;
+    private final ProductRepository repository;
     private final ProductUpdateHelper helper = new ProductUpdateHelper();
 
-    public ProductService(InMemoryProductRepository repository) {
+    public ProductService(ProductRepository repository) {
         this.repository = repository;
     }
 

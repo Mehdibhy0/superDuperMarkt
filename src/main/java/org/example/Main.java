@@ -12,8 +12,15 @@ public class Main {
         //var service = ProductServiceFactory.createSampleService();
 
         // Run with data received from CSV file ''products.csv''
-        var service = ProductServiceFactory.createCsvService("products.csv");
+//        var service = ProductServiceFactory.createCsvService("products.csv");
 
+
+//         Run with data received from Sql database
+        String url = "jdbc:mysql://localhost:3306/superduper?serverTimezone=UTC";
+
+        String username = "superuser";
+        String password = "SuperDuper123!";
+        var service = ProductServiceFactory.createSqlService(url, username, password);
 
         Simulator simulator = new Simulator(service);
         simulator.run(LocalDate.now(), 15);

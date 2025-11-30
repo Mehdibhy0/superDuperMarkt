@@ -19,7 +19,7 @@ public class Simulator {
             System.out.println("Day: " + (day + 1) + " Current date: " + currentDate);
             productService.updateAllProducts(currentDate);
 
-            for (Product p : productService.getProducts()) {
+                for (Product p : productService.getProducts()) {
                 System.out.printf("%s | Quality: %d | Base Price: %.2f | CurrentPrice: %.2f | Remove: %s%n", p.getName(), p.getQuality(), p.getBasePrice(), p.getCurrentPrice(), p.isMustBeRemoved() ? "Yes" : "No");
             }
 
