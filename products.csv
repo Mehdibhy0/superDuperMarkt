@@ -1,0 +1,7 @@
+type,name,quality,basePrice,date
+Cheese,Gouda,50,10.0,2025-12-21
+Cheese,Brie,40,12.0,2025-12-14
+Joghurt,Joghurt,7,15.0,2025-12-07
+Honey,Forest Honey,80,9.99,2024-12-01
+Wine,Merlot,20,30.0,2025-11-01
+Wine,Chardonnay,10,25.0,2025-11-25
