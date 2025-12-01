@@ -1,4 +1,4 @@
-package org.example.model;
+package org.example.domain.model;
 
 //Products that do not Expire
 public abstract class NonPerishableProduct extends Product {

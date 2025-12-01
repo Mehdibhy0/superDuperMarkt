@@ -1,8 +1,8 @@
 package org.example.utils;
 
-import org.example.model.Product;
-import org.example.utils.productupdater.GenericNonPerishableProductUpdater;
-import org.example.utils.productupdater.ProductUpdaterInterface;
+import org.example.domain.model.Product;
+import org.example.domain.updater.GenericNonPerishableProductUpdater;
+import org.example.domain.updater.ProductUpdaterInterface;
 
 import java.util.HashMap;
 import java.util.Map;

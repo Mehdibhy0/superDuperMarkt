@@ -1,19 +1,19 @@
 package org.example.service;
 
-import org.example.model.Cheese;
-import org.example.model.Joghurt;
-import org.example.model.NonPerishableProduct;
-import org.example.model.PerishableProduct;
-import org.example.model.Product;
-import org.example.model.Wine;
+import org.example.domain.model.Cheese;
+import org.example.domain.model.Joghurt;
+import org.example.domain.model.NonPerishableProduct;
+import org.example.domain.model.PerishableProduct;
+import org.example.domain.model.Product;
+import org.example.domain.model.Wine;
 import org.example.repository.ProductRepository;
 import org.example.utils.ProductUpdaterRegistry;
-import org.example.utils.productupdater.CheeseUpdater;
-import org.example.utils.productupdater.DefaultUpdater;
-import org.example.utils.productupdater.GenericNonPerishableProductUpdater;
-import org.example.utils.productupdater.GenericPerishableProductUpdater;
-import org.example.utils.productupdater.JoghurtUpdater;
-import org.example.utils.productupdater.WineUpdater;
+import org.example.domain.updater.CheeseUpdater;
+import org.example.domain.updater.DefaultUpdater;
+import org.example.domain.updater.GenericNonPerishableProductUpdater;
+import org.example.domain.updater.GenericPerishableProductUpdater;
+import org.example.domain.updater.JoghurtUpdater;
+import org.example.domain.updater.WineUpdater;
 
 import java.time.LocalDate;
 import java.util.List;

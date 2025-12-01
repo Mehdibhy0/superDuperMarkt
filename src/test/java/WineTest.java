@@ -1,8 +1,8 @@
-import org.example.model.Cheese;
-import org.example.model.Wine;
+import org.example.domain.model.Cheese;
+import org.example.domain.model.Wine;
 import org.example.repository.InMemoryProductRepository;
 import org.example.service.ProductService;
-import org.example.utils.productupdater.WineUpdater;
+import org.example.domain.updater.WineUpdater;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

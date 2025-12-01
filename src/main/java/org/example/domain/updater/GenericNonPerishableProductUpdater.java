@@ -1,13 +1,13 @@
-package org.example.utils.productupdater;
+package org.example.domain.updater;
 
-import org.example.model.Product;
+import org.example.domain.model.Product;
 
 import java.time.LocalDate;
 
-public class DefaultUpdater implements ProductUpdaterInterface {
+public class GenericNonPerishableProductUpdater implements ProductUpdaterInterface {
     @Override
     public void update(Product product, LocalDate currentDate) {
-
+        product.setMustBeRemoved(false);
     }
 
     @Override

@@ -1,10 +1,10 @@
 package org.example.sqlmodule;
 
-import org.example.model.Cheese;
-import org.example.model.Honey;
-import org.example.model.Joghurt;
-import org.example.model.Product;
-import org.example.model.Wine;
+import org.example.domain.model.Cheese;
+import org.example.domain.model.Honey;
+import org.example.domain.model.Joghurt;
+import org.example.domain.model.Product;
+import org.example.domain.model.Wine;
 import org.example.repository.ProductRepository;
 
 import java.sql.Connection;

@@ -1,6 +1,6 @@
 package org.example;
 
-import org.example.model.Product;
+import org.example.domain.model.Product;
 import org.example.service.ProductService;
 
 import java.time.LocalDate;

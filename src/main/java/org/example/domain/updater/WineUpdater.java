@@ -1,7 +1,7 @@
-package org.example.utils.productupdater;
+package org.example.domain.updater;
 
-import org.example.model.Product;
-import org.example.model.Wine;
+import org.example.domain.model.Product;
+import org.example.domain.model.Wine;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;

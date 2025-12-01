@@ -1,6 +1,6 @@
-package org.example.utils.productupdater;
+package org.example.domain.updater;
 
-import org.example.model.Product;
+import org.example.domain.model.Product;
 
 import java.time.LocalDate;
 
