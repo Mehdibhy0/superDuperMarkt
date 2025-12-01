@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class WineTest {
+public class WineUpdaterTest {
     private InMemoryProductRepository productRepository;
     private ProductService productService;
     private LocalDate today;

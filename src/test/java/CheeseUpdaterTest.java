@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class CheeseTest {
+public class CheeseUpdaterTest {
     private InMemoryProductRepository productRepository;
     private ProductService productService;
     private LocalDate today;
