@@ -1,6 +1,5 @@
 package org.example.utils.productupdater;
 
-import org.example.model.PerishableProduct;
 import org.example.model.Product;
 
 import java.time.LocalDate;

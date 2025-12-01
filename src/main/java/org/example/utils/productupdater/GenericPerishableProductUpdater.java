@@ -5,11 +5,12 @@ import org.example.model.Product;
 
 import java.time.LocalDate;
 
-public class GenericPerishableProductUpdater implements ProductUpdaterInterface{
+public class GenericPerishableProductUpdater implements ProductUpdaterInterface {
     @Override
     public void update(Product product, LocalDate currentDate) {
-        if(!(product instanceof PerishableProduct perishableProduct))
-        {throw new IllegalArgumentException("The product is not a PerishableProduct");}
+        if (!(product instanceof PerishableProduct perishableProduct)) {
+            throw new IllegalArgumentException("The product is not a PerishableProduct");
+        }
         product.setMustBeRemoved(!perishableProduct.getExpiryDate().isAfter(currentDate));
     }
 

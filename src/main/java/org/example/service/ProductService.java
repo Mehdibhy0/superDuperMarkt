@@ -41,7 +41,7 @@ public class ProductService {
             var updater = registry.getUpdater(product);
             updater.update(product, currentDate);
 
-            var currentPrice =  updater.calculatePrice(product);
+            var currentPrice = updater.calculatePrice(product);
             product.setCurrentPrice(currentPrice);
         }
     }

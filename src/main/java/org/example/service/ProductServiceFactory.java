@@ -10,7 +10,7 @@ import org.example.utils.CsvProductLoader;
 import java.time.LocalDate;
 
 public class ProductServiceFactory {
-        public static ProductService createSampleService() {
+    public static ProductService createSampleService() {
         InMemoryProductRepository repository = new InMemoryProductRepository();
         repository.addProduct(new Cheese("Gouda", 50, 10.0, LocalDate.now().plusDays(60)));
         repository.addProduct(new Cheese("Brie", 40, 12.0, LocalDate.now().plusDays(50)));
@@ -25,17 +25,17 @@ public class ProductServiceFactory {
         return new ProductService(repository);
     }
 
-    public static ProductService createCsvService(String pathToCsv){
+    public static ProductService createCsvService(String pathToCsv) {
         InMemoryProductRepository productRepository = new InMemoryProductRepository();
 
         CsvProductLoader loader = new CsvProductLoader();
-        loader.load(pathToCsv,productRepository);
+        loader.load(pathToCsv, productRepository);
 
         return new ProductService(productRepository);
     }
 
-    public static ProductService createSqlService(String url, String name, String password){
-        SqlProductRepository repository = new SqlProductRepository(url,name,password);
+    public static ProductService createSqlService(String url, String name, String password) {
+        SqlProductRepository repository = new SqlProductRepository(url, name, password);
         return new ProductService(repository);
     }
 }

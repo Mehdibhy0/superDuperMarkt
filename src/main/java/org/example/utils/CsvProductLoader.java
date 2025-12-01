@@ -13,10 +13,12 @@ import java.time.LocalDate;
 
 public class CsvProductLoader {
     public void load(String filePath, InMemoryProductRepository productRepository) {
-        try(BufferedReader br = new BufferedReader(new FileReader(filePath))){
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line = br.readLine(); // to skip header
-            while((line = br.readLine()) != null){
-                if (line.isBlank()) continue;
+            while ((line = br.readLine()) != null) {
+                if (line.isBlank()) {
+                    continue;
+                }
 
                 Product p = parseLine(line);
                 productRepository.addProduct(p);
@@ -26,7 +28,7 @@ public class CsvProductLoader {
         }
     }
 
-    private Product parseLine(String line){
+    private Product parseLine(String line) {
         String[] parts = line.split(",");
 
         String type = parts[0].trim().toLowerCase();
@@ -35,7 +37,7 @@ public class CsvProductLoader {
         double price = Double.parseDouble(parts[3].trim());
         LocalDate date = LocalDate.parse(parts[4].trim());
 
-        return switch (type){
+        return switch (type) {
             case "cheese" -> new Cheese(name, quality, price, date);
             case "wine" -> new Wine(name, quality, price, date);
             case "joghurt" -> new Joghurt(name, quality, price, date);

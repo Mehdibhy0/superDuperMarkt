@@ -4,7 +4,7 @@ import org.example.model.Product;
 
 import java.time.LocalDate;
 
-public class GenericNonPerishableProductUpdater implements ProductUpdaterInterface{
+public class GenericNonPerishableProductUpdater implements ProductUpdaterInterface {
     @Override
     public void update(Product product, LocalDate currentDate) {
         product.setMustBeRemoved(false);

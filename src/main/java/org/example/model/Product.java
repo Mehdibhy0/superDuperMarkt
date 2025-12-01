@@ -1,6 +1,5 @@
 package org.example.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,7 +10,7 @@ public abstract class Product {
     protected final String name;
     protected int quality;
     protected final double basePrice;
-    protected  double currentPrice;
+    protected double currentPrice;
     protected boolean mustBeRemoved;
 
     protected Product(String name, int quality, double basePrice, boolean mustBeRemoved) {
