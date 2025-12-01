@@ -8,23 +8,30 @@ import org.example.domain.model.Wine;
 import org.example.repository.InMemoryProductRepository;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.time.LocalDate;
 
 public class CsvProductLoader {
-    public void load(String filePath, InMemoryProductRepository productRepository) {
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
-            String line = br.readLine(); // to skip header
-            while ((line = br.readLine()) != null) {
-                if (line.isBlank()) {
-                    continue;
-                }
+    public void load(String fileName, InMemoryProductRepository productRepository) {
+        try (InputStream is = getClass().getClassLoader().getResourceAsStream(fileName)) {
+            if (is == null) {
+                throw new RuntimeException("File not found: " + fileName);
+            }
 
-                Product p = parseLine(line);
-                productRepository.addProduct(p);
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(is))) {
+                String line = br.readLine(); // to skip header
+                while ((line = br.readLine()) != null) {
+                    if (line.isBlank()) {
+                        continue;
+                    }
+
+                    Product p = parseLine(line);
+                    productRepository.addProduct(p);
+                }
             }
         } catch (Exception e) {
-            throw new RuntimeException("Failed to load CSV: " + filePath, e);
+            throw new RuntimeException("Failed to load CSV: " + fileName, e);
         }
     }
 

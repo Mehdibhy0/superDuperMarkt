@@ -9,12 +9,12 @@ import java.time.LocalDate;
 public class Main {
     public static void main(String[] args) {
         //Uncomment Next Line to Run  with hardcoded data
-        var service = ProductServiceFactory.createSampleService();
+//        var service = ProductServiceFactory.createSampleService();
         //___________________________________________________
 
 
         //Uncomment Next Line to Run with data received from CSV file ''products.csv''
-//        var service = ProductServiceFactory.createCsvService("products.csv");
+        var service = ProductServiceFactory.createCsvService("products.csv");
         //___________________________________________________
 
 
