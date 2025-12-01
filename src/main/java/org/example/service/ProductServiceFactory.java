@@ -15,8 +15,8 @@ public class ProductServiceFactory {
         repository.addProduct(new Cheese("Gouda", 50, 10.0, LocalDate.now().plusDays(60)));
         repository.addProduct(new Cheese("Brie", 40, 12.0, LocalDate.now().plusDays(50)));
         repository.addProduct(new Cheese("Ricotta", 40, 15.0, LocalDate.now().plusDays(5)));
-        //Expires on 8th day, price is cut in half on 5th day
-        repository.addProduct(new Joghurt("Joghurt", 7, 15.0, LocalDate.now().plusDays(7)));
+        //Not comsumable when quality is 0, or one Day after Expiry / price is cut in half on 5th day
+        repository.addProduct(new Joghurt("Joghurt", 7, 15.0, LocalDate.now().plusDays(10)));
 
         // Non-Perishable Products: Wine
         repository.addProduct(new Wine("Merlot", 20, 30.0, LocalDate.now().minusDays(5)));

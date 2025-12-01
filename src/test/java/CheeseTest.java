@@ -2,6 +2,7 @@ import org.example.model.Cheese;
 import org.example.model.Wine;
 import org.example.repository.InMemoryProductRepository;
 import org.example.service.ProductService;
+import org.example.utils.productupdater.CheeseUpdater;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -9,9 +10,10 @@ import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class ProductServiceTest {
+public class CheeseTest {
     private InMemoryProductRepository productRepository;
     private ProductService productService;
     private LocalDate today;
@@ -24,29 +26,24 @@ public class ProductServiceTest {
     }
 
     @Test
-    void testUpdateAllProducts_cheeseAndWine(){
-        Cheese gouda = new Cheese("Gouda",40, 10.0,today.plusDays(5));
-        Wine merlot = new Wine("Merlot",20,30.0,today.minusDays(10));
+    void testUpdateCheese() {
+        Cheese gouda = new Cheese("Gouda", 40, 10.0, today.plusDays(5));
 
         productRepository.addProduct(gouda);
-        productRepository.addProduct(merlot);
 
-        productService.updateAllProducts(today);
-
-        assertEquals(39, gouda.getQuality());
+        for (int i = 0; i < 5; i++) {
+            productService.updateAllProducts(today.plusDays(i));
+        }
+        assertEquals(35, gouda.getQuality());
         assertFalse(gouda.isMustBeRemoved());
-        assertEquals(10+39*0.10, gouda.getCurrentPrice());
-
-        assertEquals(21, merlot.getQuality());
-        assertFalse(merlot.isMustBeRemoved());
-        assertEquals(30.0, merlot.getCurrentPrice());
+        assertEquals(10 + 35 * 0.10, gouda.getCurrentPrice());
     }
 
 
     @Test
-    void testCheeseRemovalWhenExpiredOrLowQuality(){
-        Cheese expired = new Cheese("expired",40, 10.0,today.minusDays(1));
-        Cheese lowQuality = new Cheese("lowQuality",30, 10.0,today.plusDays(5));
+    void testCheeseRemovalWhenExpiredOrLowQuality() {
+        Cheese expired = new Cheese("expired", 40, 10.0, today.minusDays(1));
+        Cheese lowQuality = new Cheese("lowQuality", 30, 10.0, today.plusDays(5));
 
         productRepository.addProduct(expired);
         productRepository.addProduct(lowQuality);
@@ -58,17 +55,21 @@ public class ProductServiceTest {
     }
 
     @Test
-    void testMultipleDaysUpdate(){
-        Cheese gouda = new Cheese("Gouda",40, 10.0,today.plusDays(5));
-        Wine merlot = new Wine("Merlot",20,30.0,today.minusDays(5));
+    void testMultipleDaysUpdate() {
+        Cheese gouda = new Cheese("Gouda", 40, 10.0, today.plusDays(5));
 
-        productRepository.addProduct(merlot);
         productRepository.addProduct(gouda);
 
-        for(int i=0; i<10; i++){
+        for (int i = 0; i < 10; i++) {
             productService.updateAllProducts(today.plusDays(i));
         }
         assertEquals(30, gouda.getQuality());
-        assertEquals(21, merlot.getQuality());
+    }
+
+    @Test
+    void testShouldThrowIllegalArgumentsExceptionWrongProduct(){
+        CheeseUpdater updater = new CheeseUpdater();
+        Wine merlot = new Wine("Merlot", 40, 10.0, today.plusDays(5));
+        assertThrows(IllegalArgumentException.class, () -> updater.update(merlot, today));
     }
 }
