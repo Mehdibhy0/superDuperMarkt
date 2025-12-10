@@ -19,7 +19,7 @@ public class WineUpdater implements ProductUpdaterInterface {
         }
 
         int increments = (int) daySinceStock / 10;
-        int initialQuality = wine.getInitialQuantity();
+        int initialQuality = wine.getInitialQuality();
         int newQuality = Math.min(50, initialQuality + increments);
 
         wine.setQuality(newQuality);
@@ -28,7 +28,7 @@ public class WineUpdater implements ProductUpdaterInterface {
 
     @Override
     public double calculatePrice(Product product) {
-        if (!(product instanceof Wine wine)) {
+        if (!(product instanceof Wine)) {
             throw new IllegalArgumentException("Expected Wine Product, got: " + product.getClass());
         }
         return product.getBasePrice();
